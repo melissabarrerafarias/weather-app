@@ -17,9 +17,9 @@
           </div>
     </header>
 
-    <main>
+    <main class = "row">
         <!-- left column -->
-        <div class = "col-3">
+        <div class = "col-3 m-2">
                 <h3>Search for a City: </h3>
                 <form id = "search-city" class = "form-inline">
                 <input id = "search-input" type = "text" autofocus = "true" class = "form-control col-7" />
@@ -33,8 +33,14 @@
         </div>
 
         <!-- right column -->
-        <div class = "col-8">
-        
+        <div class = "col-7">
+        <div id = "city-status" class = "card">
+            <h1 id = "current-city">Atlanta (8/15/2019)</h1>
+            <h2 id = "temperature">Temperature: 90.9 F</h2>
+            <h2 id = "humidity">Humidity: 41%</h2>
+            <h2 id = "wind-speed">Wind Speed: 4.7 MPH</h2>
+            <h2 id = "uv-index">UV Index: 9.94</h2>
+        </div>
         </div>
     </main>
     
