@@ -5,3 +5,8 @@
 .navbar {
     height: 100px;
 }
+
+#weather-icon {
+    width: 2rem;
+    height: 2rem;
+}

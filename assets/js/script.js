@@ -12,7 +12,8 @@ var cityTemperature = document.querySelector("#temperature");
 var cityHumidity = document.querySelector("#humidity");
 var cityWindSpeed = document.querySelector("#wind-speed");
 var cityUVIndex = document.querySelector("#uv-index");
-
+var icon = document.querySelector("#weather-icon");
+var imageContainer = document.createElement("img");
 
 var getCityWeather = function (city) {
     // api url for weather
@@ -45,11 +46,17 @@ var submitCity = function(event) {
 var displayWeather = function(weather, location) {
     console.log(weather);
     console.log(location);
+    // get icon code from response
+    var iconCode = weather.weather[0].icon;
+    iconImage = "http://openweathermap.org/img/wn/" + iconCode + ".png";
+
     // display which city 
     currentCity.textContent = location;
     cityTemperature.textContent = "Temperature: " + weather.main.temp + "°";
     cityHumidity.textContent = "Humidity: " + weather.main.humidity + "%";
-    cityWindSpeed.textContent = "Wind Speed: " + weather.wind.speed;
+    cityWindSpeed.textContent = "Wind Speed: " + weather.wind.speed + "MPH";
+    imageContainer.setAttribute("src", iconImage);
+    currentCity.appendChild(imageContainer);
 };
 searchFormEl.addEventListener("submit", submitCity);
 
