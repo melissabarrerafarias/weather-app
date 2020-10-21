@@ -70,14 +70,38 @@ var displayWeather = function (weather, location) {
 }
 
 // take in two parameters: x = latitude and y = longitude
-var getUvIndex = function(x, y) {
+var getUvIndex = function (x, y) {
     var uvApiUrl = "http://api.openweathermap.org/data/2.5/uvi?lat=" + x + "&lon=" + y + "&appid=1b885e610b5ff8d663b1c0a52218b536";
 
     fetch(uvApiUrl).then(function (response) {
         response.json().then(function (index) {
+            console.log(index);
+            console.log(index.date_iso);
             cityUVIndex.textContent = "UV-Index: " + index.value;
+            changeUvColor(index);
         });
     });
+}
+
+var changeUvColor = function(index) {
+
+    var uvStatus = index.value;
+    console.log(uvStatus);
+    if (uvStatus < 3) {
+        cityUVIndex.classList = "uv-healthy";
+    }
+    if (uvStatus > 3) {
+        cityUVIndex.classList = "uv-moderate";
+    }
+    if (uvStatus > 5) {
+        cityUVIndex.classList = "uv-mod-unhealthy";
+    }
+    if (uvStatus > 7) {
+        cityUVIndex.classList = "uv-unhealthy";
+    }
+    if (uvStatus > 11) {
+        cityUVIndex.classList = "uv-very-unhealthy";
+    }
 }
 
 searchFormEl.addEventListener("submit", submitCity);

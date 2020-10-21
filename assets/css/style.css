@@ -10,3 +10,23 @@
     width: 2rem;
     height: 2rem;
 }
+
+.uv-moderate {
+    background-color: yellow;
+}
+
+.uv-healthy {
+    background-color: green;
+}
+
+.uv-mod-unhealthy {
+    background-color: orange;
+}
+
+.uv-unhealthy {
+    background-color: red;
+}
+
+.uv-very-unhealthy {
+    background-color: purple;
+}
