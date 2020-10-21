@@ -166,68 +166,68 @@ var displayFutureForecast = function(location, forecast) {
     console.log(location, forecast);
     console.log(forecast.list[1].main.humidity);
     // temperature for five-day
-    fcTempOne.textContent = "Temp: " + forecast.list[1].main.temp + "°F";
-    fcTempTwo.textContent = "Temp: " + forecast.list[9].main.temp + "°F";
-    fcTempThree.textContent = "Temp: " + forecast.list[17].main.temp + "°F";
-    fcTempFour.textContent = "Temp: " + forecast.list[25].main.temp + "°F";
-    fcTempFive.textContent = "Temp: " + forecast.list[33].main.temp + "°F";
+    fcTempOne.textContent = "Temp: " + forecast.list[5].main.temp + "°F";
+    fcTempTwo.textContent = "Temp: " + forecast.list[13].main.temp + "°F";
+    fcTempThree.textContent = "Temp: " + forecast.list[21].main.temp + "°F";
+    fcTempFour.textContent = "Temp: " + forecast.list[29].main.temp + "°F";
+    fcTempFive.textContent = "Temp: " + forecast.list[37].main.temp + "°F";
 
     // humidity for five-day 
-    fcHumidOne.textContent = "Humidity: " + forecast.list[1].main.humidity + "%";
-    fcHumidTwo.textContent = "Humidity: " + forecast.list[9].main.humidity + "%";
-    fcHumidThree.textContent = "Humidity: " + forecast.list[17].main.humidity + "%";
-    fcHumidFour.textContent = "Humidity: " + forecast.list[25].main.humidity + "%";
-    fcHumidFive.textContent = "Humidity: " + forecast.list[33].main.humidity + "%";
+    fcHumidOne.textContent = "Humidity: " + forecast.list[4].main.humidity + "%";
+    fcHumidTwo.textContent = "Humidity: " + forecast.list[13].main.humidity + "%";
+    fcHumidThree.textContent = "Humidity: " + forecast.list[21].main.humidity + "%";
+    fcHumidFour.textContent = "Humidity: " + forecast.list[29].main.humidity + "%";
+    fcHumidFive.textContent = "Humidity: " + forecast.list[37].main.humidity + "%";
 
     // dates 
-    var dayOne = forecast.list[1].dt_txt;
-    var dayOneText = dayOne.split("03:")[0].trim();
+    var dayOne = forecast.list[5].dt_txt;
+    var dayOneText = dayOne.split("15:")[0].trim();
     weatherDayOne.textContent = dayOneText;
 
-    var dayTwo = forecast.list[9].dt_txt;
-    var dayTwoText = dayTwo.split("03:")[0].trim();
+    var dayTwo = forecast.list[13].dt_txt;
+    var dayTwoText = dayTwo.split("15:")[0].trim();
     weatherDayTwo.textContent = dayTwoText;
 
-    var dayThree = forecast.list[17].dt_txt;
-    var dayThreeText = dayThree.split("03:")[0].trim();
+    var dayThree = forecast.list[21].dt_txt;
+    var dayThreeText = dayThree.split("15:")[0].trim();
     weatherDayThree.textContent = dayThreeText;
 
-    var dayFour = forecast.list[25].dt_txt;
-    var dayFourText = dayFour.split("03:")[0].trim();
+    var dayFour = forecast.list[29].dt_txt;
+    var dayFourText = dayFour.split("15:")[0].trim();
     weatherDayFour.textContent = dayFourText;
 
-    var dayFive = forecast.list[33].dt_txt;
-    var dayFiveText = dayFive.split("03:")[0].trim();
+    var dayFive = forecast.list[37].dt_txt;
+    var dayFiveText = dayFive.split("15:")[0].trim();
     weatherDayFive.textContent = dayFiveText;
 
 
     // add icon code
     // day one forecast
-    fcIconOne = forecast.list[1].weather[0].icon;
+    fcIconOne = forecast.list[5].weather[0].icon;
     fcIconImage = "http://openweathermap.org/img/wn/" + fcIconOne + ".png";
     iconOneContainer.setAttribute("src", fcIconImage);
     weatherDayOne.appendChild(iconOneContainer);
 
     // day two forecast 
-    fcIconTwo = forecast.list[9].weather[0].icon;
+    fcIconTwo = forecast.list[13].weather[0].icon;
     fcIconImage = "http://openweathermap.org/img/wn/" + fcIconTwo + ".png";
     iconTwoContainer.setAttribute("src", fcIconImage);
     weatherDayTwo.appendChild(iconTwoContainer);
 
     // day three forecast
-    fcIconThree = forecast.list[17].weather[0].icon;
+    fcIconThree = forecast.list[21].weather[0].icon;
     fcIconImage = "http://openweathermap.org/img/wn/" + fcIconThree + ".png";
     iconThreeContainer.setAttribute("src", fcIconImage);
     weatherDayThree.appendChild(iconThreeContainer);
 
     // day four forecast 
-    fcIconFour = forecast.list[25].weather[0].icon;
+    fcIconFour = forecast.list[29].weather[0].icon;
     fcIconImage = "http://openweathermap.org/img/wn/" + fcIconFour + ".png";
     iconFourContainer.setAttribute("src", fcIconImage);
     weatherDayFour.appendChild(iconFourContainer);
 
     // day five forecast 
-    fcIconFive = forecast.list[33].weather[0].icon;
+    fcIconFive = forecast.list[37].weather[0].icon;
     fcIconImage = "http://openweathermap.org/img/wn/" + fcIconFive + ".png";
     iconFiveContainer.setAttribute("src", fcIconImage);
     weatherDayFive.appendChild(iconFiveContainer);
