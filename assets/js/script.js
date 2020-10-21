@@ -79,15 +79,24 @@ var submitCity = function (event) {
     }
 
      // search history 
+     // creates element for search history item
      var oldCity = document.createElement("a");
      oldCity.setAttribute("href", "#");
      oldCity.classList = "list-group-item list-group-item-action";
      oldCity.textContent = locationChosen;
-     console.log(oldCity);
-     git a
+
+    // appends to the div container
      searchHistoryContainer.appendChild(oldCity);
 
+
     futureForecast(locationChosen);
+}
+
+// listener for search history 
+var searchCityAgain = function(event) {
+    event.preventDefault();
+    console.log("this is working");
+    
 }
 
 // these parameters represent accordingly: weather/data and location/city in the getCityWeather function
@@ -240,4 +249,6 @@ var displayFutureForecast = function(location, forecast) {
 }
 
 searchFormEl.addEventListener("submit", submitCity);
+
+searchHistoryContainer.addEventListener("click", searchCityAgain);
 
