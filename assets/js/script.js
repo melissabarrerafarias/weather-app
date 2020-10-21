@@ -1,12 +1,3 @@
-// api key
-// http://api.openweathermap.org/data/2.5/forecast?id=524901&APPID=1b885e610b5ff8d663b1c0a52218b536
-
-// uv data
-// http://api.openweathermap.org/data/2.5/uvi?lat={lat}&lon={lon}&appid={API key}
-
-// 5-day forecast
-// http://api.openweathermap.org/data/2.5/forecast?q=München,US&appid={API key}
-
 // these two variables target the form element (searchFormEl) and the input element (searchInputEl) in the HTML
 var searchFormEl = document.querySelector("#search-city");
 var searchInputEl = document.querySelector("#search-input")
@@ -56,7 +47,10 @@ var fcTempFive = document.querySelector("#five-temp");
 var fcHumidFive = document.querySelector("#humid-five");
 var iconFiveContainer = document.createElement("img");
 
+// search history elements
+var searchHistoryContainer = document.querySelector("#search-history");
 
+// fetch call for weather 
 var getCityWeather = function (city) {
     // api url for weather
     var apiUrl = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=1b885e610b5ff8d663b1c0a52218b536";
@@ -69,6 +63,7 @@ var getCityWeather = function (city) {
     });
 }
 
+// listener
 var submitCity = function (event) {
     event.preventDefault();
     // get the city from search bar 
@@ -110,7 +105,7 @@ var displayWeather = function (weather, location) {
     getUvIndex(latitude, longitude)
 }
 
-// take in two parameters: x = latitude and y = longitude
+// takes in two parameters: x = latitude and y = longitude
 var getUvIndex = function (x, y) {
     var uvApiUrl = "http://api.openweathermap.org/data/2.5/uvi?lat=" + x + "&lon=" + y + "&appid=1b885e610b5ff8d663b1c0a52218b536";
 
@@ -181,6 +176,7 @@ var displayFutureForecast = function(location, forecast) {
 
     // dates 
     var dayOne = forecast.list[5].dt_txt;
+    console.log(dayOne);
     var dayOneText = dayOne.split("15:")[0].trim();
     weatherDayOne.textContent = dayOneText;
 
