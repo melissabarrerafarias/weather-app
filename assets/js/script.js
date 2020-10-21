@@ -5,6 +5,14 @@
 var searchFormEl = document.querySelector("#search-city");
 var searchInputEl = document.querySelector("#search-input")
 
+// these variables target the corresponding elements in the <div> that hold the chosen cities' weather
+var cityWeatherContainer = document.querySelector("#city-status");
+var currentCity = document.querySelector("#current-city");
+var cityTemperature = document.querySelector("#temperature");
+var cityHumidity = document.querySelector("#humidity");
+var cityWindSpeed = document.querySelector("#wind-speed");
+var cityUVIndex = document.querySelector("#uv-index");
+
 
 var getCityWeather = function (city) {
     // api url for weather
@@ -13,7 +21,7 @@ var getCityWeather = function (city) {
     // makes the request 
     fetch(apiUrl).then(function (response) {
         response.json().then(function(data) { // formats response as JSON
-            console.log(data);
+            displayWeather(data, city);
         });
     });
 }
@@ -33,5 +41,10 @@ var submitCity = function(event) {
     }
 }
 
+// these parameters represent accordingly: weather/data and location/city in the getCityWeather function
+var displayWeather = function(weather, location) {
+    console.log(weather);
+    console.log(location);
+};
 searchFormEl.addEventListener("submit", submitCity);
 
