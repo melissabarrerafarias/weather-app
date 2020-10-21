@@ -13,9 +13,11 @@ var currentCity = document.querySelector("#current-city");
 var cityTemperature = document.querySelector("#temperature");
 var cityHumidity = document.querySelector("#humidity");
 var cityWindSpeed = document.querySelector("#wind-speed");
+var cityUVIndexText = document.querySelector("#uv-index-title");
 var cityUVIndex = document.querySelector("#uv-index");
 var icon = document.querySelector("#weather-icon");
 var imageContainer = document.createElement("img");
+var dateContainer = document.createElement("h2");
 
 var getCityWeather = function (city) {
     // api url for weather
@@ -57,11 +59,13 @@ var displayWeather = function (weather, location) {
     cityTemperature.textContent = "Temperature: " + weather.main.temp + "°";
     cityHumidity.textContent = "Humidity: " + weather.main.humidity + "%";
     cityWindSpeed.textContent = "Wind Speed: " + weather.wind.speed + "MPH";
+    cityUVIndexText.textContent = "UV-Index: ";
 
     // use imageContainer, (the img element created with script), and append the icon
     imageContainer.setAttribute("src", iconImage);
     currentCity.appendChild(imageContainer);
 
+    currentCity.appendChild(dateContainer);
     // get latitude and longitude of current city 
     var latitude = weather.coord.lat;
     var longitude = weather.coord.lon;
@@ -75,14 +79,21 @@ var getUvIndex = function (x, y) {
 
     fetch(uvApiUrl).then(function (response) {
         response.json().then(function (index) {
-            console.log(index);
-            console.log(index.date_iso);
-            cityUVIndex.textContent = "UV-Index: " + index.value;
+            cityUVIndex.textContent = index.value;
             changeUvColor(index);
+            formatDate(index);
         });
     });
 }
 
+var formatDate = function(index) {
+    var queryDate = index.date_iso;
+    var currentDate = queryDate.split("T")[0];
+    console.log(currentDate);
+    dateContainer.textContent = "(" + currentDate + ")";
+}
+
+// changes color according to uv index
 var changeUvColor = function(index) {
 
     var uvStatus = index.value;

@@ -12,21 +12,51 @@
 }
 
 .uv-moderate {
-    background-color: yellow;
+    background-color: rgba(250, 250, 42, 0.938);
+    width: 4rem;
+    height: 3rem;
+    margin-left: 1rem;
+    text-align: center;
+    border-radius: 10px;
+    padding-top: 5px
 }
 
 .uv-healthy {
-    background-color: green;
+    background-color: rgba(0, 128, 0, 0.774);
+    width: 4rem;
+    height: 3rem;
+    margin-left: 1rem;
+    text-align: center;
+    border-radius: 10px;
+    padding-top: 5px
 }
 
 .uv-mod-unhealthy {
-    background-color: orange;
+    background-color: rgba(255, 166, 0, 0.781);
+    width: 4rem;
+    height: 3rem;
+    margin-left: 1rem;
+    text-align: center;
+    border-radius: 10px;
+    padding-top: 5px
 }
 
 .uv-unhealthy {
-    background-color: red;
+    background-color: rgba(255, 0, 0, 0.747);
+    width: 4rem;
+    height: 3rem;
+    margin-left: 1rem;
+    text-align: center;
+    border-radius: 10px;
+    padding-top: 5px
 }
 
 .uv-very-unhealthy {
-    background-color: purple;
+    background-color: rgba(128, 0, 128, 0.712);
+    width: 4rem;
+    height: 3rem;
+    margin-left: 1rem;
+    text-align: center;
+    border-radius: 10px;
+    padding-top: 5px
 }
