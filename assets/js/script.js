@@ -4,7 +4,7 @@
 // uv data
 // http://api.openweathermap.org/data/2.5/uvi?lat={lat}&lon={lon}&appid={API key}
 
-// 5-day forcast
+// 5-day forecast
 // http://api.openweathermap.org/data/2.5/forecast?q=München,US&appid={API key}
 
 // these two variables target the form element (searchFormEl) and the input element (searchInputEl) in the HTML
@@ -22,6 +22,35 @@ var cityUVIndex = document.querySelector("#uv-index");
 var icon = document.querySelector("#weather-icon");
 var imageContainer = document.createElement("img");
 var dateContainer = document.createElement("h2");
+
+// these variables correspond to the elements in the 5-day forecast containers
+
+// day one:
+var weatherDayOne = document.querySelector("#date-one");
+var fcTempOne = document.querySelector("#one-temp");
+var fcHumidOne = document.querySelector("#humid-one");
+
+// day two: 
+var weatherDayTwo = document.querySelector("#date-two");
+var fcTempTwo = document.querySelector("#two-temp")
+var fcHumidTwo = document.querySelector("#humid-two");
+
+// day three:
+var weatherDayThree = document.querySelector("#date-three");
+var fcTempThree = document.querySelector("#three-temp");
+var fcHumidThree = document.querySelector("#humid-three");
+
+// day four: 
+var weatherDayFour = document.querySelector("#date-four");
+var fcTempFour = document.querySelector("#four-temp");
+var fcHumidFour = document.querySelector("#humid-four");
+
+
+// day five:
+var weatherDayFive = document.querySelector("#date-five");
+var fcTempFive = document.querySelector("#five-temp");
+var fcHumidFive = document.querySelector("#humid-five");
+
 
 var getCityWeather = function (city) {
     // api url for weather
@@ -59,7 +88,7 @@ var displayWeather = function (weather, location) {
 
     // display which city 
     currentCity.textContent = location;
-    cityTemperature.textContent = "Temperature: " + weather.main.temp + "°";
+    cityTemperature.textContent = "Temperature: " + weather.main.temp + "°F";
     cityHumidity.textContent = "Humidity: " + weather.main.humidity + "%";
     cityWindSpeed.textContent = "Wind Speed: " + weather.wind.speed + "MPH";
     cityUVIndexText.textContent = "UV-Index: ";
@@ -127,8 +156,23 @@ var futureForecast = function (city) {
     });
 }
 
+// parameters are: location = city and forecast = results
 var displayFutureForecast = function(location, forecast) {
     console.log(location, forecast);
+    console.log(forecast.list[1].main.humidity);
+    // temperature for five-day
+    fcTempOne.textContent = "Temp: " + forecast.list[1].main.temp + "°F";
+    fcTempTwo.textContent = "Temp: " + forecast.list[2].main.temp + "°F";
+    fcTempThree.textContent = "Temp: " + forecast.list[3].main.temp + "°F";
+    fcTempFour.textContent = "Temp: " + forecast.list[4].main.temp + "°F";
+    fcTempFive.textContent = "Temp: " + forecast.list[5].main.temp + "°F";
+
+    // humidity for five-day 
+    fcHumidOne.textContent = "Humidity: " + forecast.list[1].main.humidity + "%";
+    fcHumidTwo.textContent = "Humidity: " + forecast.list[2].main.humidity + "%";
+    fcHumidThree.textContent = "Humidity: " + forecast.list[3].main.humidity + "%";
+    fcHumidFour.textContent = "Humidity: " + forecast.list[4].main.humidity + "%";
+    fcHumidFive.textContent = "Humidity: " + forecast.list[5].main.humidity + "%";
 }
 
 searchFormEl.addEventListener("submit", submitCity);
