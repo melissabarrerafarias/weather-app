@@ -55,8 +55,11 @@ var displayWeather = function(weather, location) {
     cityTemperature.textContent = "Temperature: " + weather.main.temp + "°";
     cityHumidity.textContent = "Humidity: " + weather.main.humidity + "%";
     cityWindSpeed.textContent = "Wind Speed: " + weather.wind.speed + "MPH";
+    
+    // use imageContainer, (the img element created with script), and append the icon
     imageContainer.setAttribute("src", iconImage);
     currentCity.appendChild(imageContainer);
 };
+
 searchFormEl.addEventListener("submit", submitCity);
 
