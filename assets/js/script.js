@@ -29,27 +29,32 @@ var dateContainer = document.createElement("h2");
 var weatherDayOne = document.querySelector("#date-one");
 var fcTempOne = document.querySelector("#one-temp");
 var fcHumidOne = document.querySelector("#humid-one");
+var iconOneContainer = document.createElement("img");
 
 // day two: 
 var weatherDayTwo = document.querySelector("#date-two");
 var fcTempTwo = document.querySelector("#two-temp")
 var fcHumidTwo = document.querySelector("#humid-two");
+var iconTwoContainer = document.createElement("img");
 
 // day three:
 var weatherDayThree = document.querySelector("#date-three");
 var fcTempThree = document.querySelector("#three-temp");
 var fcHumidThree = document.querySelector("#humid-three");
+var iconThreeContainer = document.createElement("img");
 
 // day four: 
 var weatherDayFour = document.querySelector("#date-four");
 var fcTempFour = document.querySelector("#four-temp");
 var fcHumidFour = document.querySelector("#humid-four");
+var iconFourContainer = document.createElement("img");
 
 
 // day five:
 var weatherDayFive = document.querySelector("#date-five");
 var fcTempFive = document.querySelector("#five-temp");
 var fcHumidFive = document.querySelector("#humid-five");
+var iconFiveContainer = document.createElement("img");
 
 
 var getCityWeather = function (city) {
@@ -176,24 +181,56 @@ var displayFutureForecast = function(location, forecast) {
 
     // dates 
     var dayOne = forecast.list[1].dt_txt;
-    var dayOneText = dayOne.split("00:")[0].trim();
+    var dayOneText = dayOne.split("03:")[0].trim();
     weatherDayOne.textContent = dayOneText;
 
     var dayTwo = forecast.list[9].dt_txt;
-    var dayTwoText = dayTwo.split("00:")[0].trim();
+    var dayTwoText = dayTwo.split("03:")[0].trim();
     weatherDayTwo.textContent = dayTwoText;
 
     var dayThree = forecast.list[17].dt_txt;
-    var dayThreeText = dayThree.split("00:")[0].trim();
+    var dayThreeText = dayThree.split("03:")[0].trim();
     weatherDayThree.textContent = dayThreeText;
 
     var dayFour = forecast.list[25].dt_txt;
-    var dayFourText = dayFour.split("00:")[0].trim();
+    var dayFourText = dayFour.split("03:")[0].trim();
     weatherDayFour.textContent = dayFourText;
 
     var dayFive = forecast.list[33].dt_txt;
-    var dayFiveText = dayFive.split("00:")[0].trim();
+    var dayFiveText = dayFive.split("03:")[0].trim();
     weatherDayFive.textContent = dayFiveText;
+
+
+    // add icon code
+    // day one forecast
+    fcIconOne = forecast.list[1].weather[0].icon;
+    fcIconImage = "http://openweathermap.org/img/wn/" + fcIconOne + ".png";
+    iconOneContainer.setAttribute("src", fcIconImage);
+    weatherDayOne.appendChild(iconOneContainer);
+
+    // day two forecast 
+    fcIconTwo = forecast.list[9].weather[0].icon;
+    fcIconImage = "http://openweathermap.org/img/wn/" + fcIconTwo + ".png";
+    iconTwoContainer.setAttribute("src", fcIconImage);
+    weatherDayTwo.appendChild(iconTwoContainer);
+
+    // day three forecast
+    fcIconThree = forecast.list[17].weather[0].icon;
+    fcIconImage = "http://openweathermap.org/img/wn/" + fcIconThree + ".png";
+    iconThreeContainer.setAttribute("src", fcIconImage);
+    weatherDayThree.appendChild(iconThreeContainer);
+
+    // day four forecast 
+    fcIconFour = forecast.list[25].weather[0].icon;
+    fcIconImage = "http://openweathermap.org/img/wn/" + fcIconFour + ".png";
+    iconFourContainer.setAttribute("src", fcIconImage);
+    weatherDayFour.appendChild(iconFourContainer);
+
+    // day five forecast 
+    fcIconFive = forecast.list[33].weather[0].icon;
+    fcIconImage = "http://openweathermap.org/img/wn/" + fcIconFive + ".png";
+    iconFiveContainer.setAttribute("src", fcIconImage);
+    weatherDayFive.appendChild(iconFiveContainer);
 }
 
 searchFormEl.addEventListener("submit", submitCity);
