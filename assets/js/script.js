@@ -77,6 +77,16 @@ var submitCity = function (event) {
     else {
         alert("Please enter the city you would like to see!");
     }
+
+     // search history 
+     var oldCity = document.createElement("a");
+     oldCity.setAttribute("href", "#");
+     oldCity.classList = "list-group-item list-group-item-action";
+     oldCity.textContent = locationChosen;
+     console.log(oldCity);
+     git a
+     searchHistoryContainer.appendChild(oldCity);
+
     futureForecast(locationChosen);
 }
 
