@@ -53,8 +53,6 @@ var submitCity = function (event) {
 
 // these parameters represent accordingly: weather/data and location/city in the getCityWeather function
 var displayWeather = function (weather, location) {
-    console.log(weather);
-    console.log(location);
     // get icon code from response
     var iconCode = weather.weather[0].icon;
     iconImage = "http://openweathermap.org/img/wn/" + iconCode + ".png";
@@ -95,7 +93,6 @@ var getUvIndex = function (x, y) {
 var formatDate = function (index) {
     var queryDate = index.date_iso;
     var currentDate = queryDate.split("T")[0];
-    console.log(currentDate);
     dateContainer.textContent = "(" + currentDate + ")";
 }
 
@@ -103,7 +100,6 @@ var formatDate = function (index) {
 var changeUvColor = function (index) {
 
     var uvStatus = index.value;
-    console.log(uvStatus);
     if (uvStatus < 3) {
         cityUVIndex.classList = "uv-healthy";
     }
@@ -122,11 +118,11 @@ var changeUvColor = function (index) {
 }
 
 var futureForecast = function (city) {
-    var forecastApi = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + ",US&appid=1b885e610b5ff8d663b1c0a52218b536";
-
+    var forecastApi = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=1b885e610b5ff8d663b1c0a52218b536";
+    console.log(forecastApi);
     fetch(forecastApi).then(function (response) {
-        response.json().then(function (data) { // formats response as JSON
-            console.log(data);
+        response.json().then(function (results) { // formats response as JSON
+            console.log(results);
         });
     });
 }
