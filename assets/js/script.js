@@ -16,7 +16,7 @@ var cityUVIndex = document.querySelector("#uv-index");
 
 var getCityWeather = function (city) {
     // api url for weather
-    var apiUrl = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=1b885e610b5ff8d663b1c0a52218b536";
+    var apiUrl = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=1b885e610b5ff8d663b1c0a52218b536";
 
     // makes the request 
     fetch(apiUrl).then(function (response) {
@@ -45,6 +45,11 @@ var submitCity = function(event) {
 var displayWeather = function(weather, location) {
     console.log(weather);
     console.log(location);
+    // display which city 
+    currentCity.textContent = location;
+    cityTemperature.textContent = "Temperature: " + weather.main.temp + "°";
+    cityHumidity.textContent = "Humidity: " + weather.main.humidity + "%";
+    cityWindSpeed.textContent = "Wind Speed: " + weather.wind.speed;
 };
 searchFormEl.addEventListener("submit", submitCity);
 
