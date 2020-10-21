@@ -1,6 +1,8 @@
 // api key
 // http://api.openweathermap.org/data/2.5/forecast?id=524901&APPID=1b885e610b5ff8d663b1c0a52218b536
 
+// uv data - http://api.openweathermap.org/data/2.5/uvi?lat={lat}&lon={lon}&appid={API key}
+
 // these two variables target the form element (searchFormEl) and the input element (searchInputEl) in the HTML
 var searchFormEl = document.querySelector("#search-city");
 var searchInputEl = document.querySelector("#search-input")
@@ -21,13 +23,13 @@ var getCityWeather = function (city) {
 
     // makes the request 
     fetch(apiUrl).then(function (response) {
-        response.json().then(function(data) { // formats response as JSON
+        response.json().then(function (data) { // formats response as JSON
             displayWeather(data, city);
         });
     });
 }
 
-var submitCity = function(event) {
+var submitCity = function (event) {
     event.preventDefault();
     // get the city from search bar 
     var locationChosen = searchInputEl.value.trim();
@@ -43,7 +45,7 @@ var submitCity = function(event) {
 }
 
 // these parameters represent accordingly: weather/data and location/city in the getCityWeather function
-var displayWeather = function(weather, location) {
+var displayWeather = function (weather, location) {
     console.log(weather);
     console.log(location);
     // get icon code from response
@@ -55,11 +57,28 @@ var displayWeather = function(weather, location) {
     cityTemperature.textContent = "Temperature: " + weather.main.temp + "°";
     cityHumidity.textContent = "Humidity: " + weather.main.humidity + "%";
     cityWindSpeed.textContent = "Wind Speed: " + weather.wind.speed + "MPH";
-    
+
     // use imageContainer, (the img element created with script), and append the icon
     imageContainer.setAttribute("src", iconImage);
     currentCity.appendChild(imageContainer);
-};
+
+    // get latitude and longitude of current city 
+    var latitude = weather.coord.lat;
+    var longitude = weather.coord.lon;
+
+    getUvIndex(latitude, longitude)
+}
+
+// take in two parameters: x = latitude and y = longitude
+var getUvIndex = function(x, y) {
+    var uvApiUrl = "http://api.openweathermap.org/data/2.5/uvi?lat=" + x + "&lon=" + y + "&appid=1b885e610b5ff8d663b1c0a52218b536";
+
+    fetch(uvApiUrl).then(function (response) {
+        response.json().then(function (index) {
+            cityUVIndex.textContent = "UV-Index: " + index.value;
+        });
+    });
+}
 
 searchFormEl.addEventListener("submit", submitCity);
 
