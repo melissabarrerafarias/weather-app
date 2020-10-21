@@ -118,13 +118,17 @@ var changeUvColor = function (index) {
 }
 
 var futureForecast = function (city) {
-    var forecastApi = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=1b885e610b5ff8d663b1c0a52218b536";
+    var forecastApi = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&appid=1b885e610b5ff8d663b1c0a52218b536";
     console.log(forecastApi);
     fetch(forecastApi).then(function (response) {
         response.json().then(function (results) { // formats response as JSON
-            console.log(results);
+            displayFutureForecast(city, results);
         });
     });
+}
+
+var displayFutureForecast = function(location, forecast) {
+    console.log(location, forecast);
 }
 
 searchFormEl.addEventListener("submit", submitCity);
