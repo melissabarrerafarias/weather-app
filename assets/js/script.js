@@ -1,7 +1,11 @@
 // api key
 // http://api.openweathermap.org/data/2.5/forecast?id=524901&APPID=1b885e610b5ff8d663b1c0a52218b536
 
-// uv data - http://api.openweathermap.org/data/2.5/uvi?lat={lat}&lon={lon}&appid={API key}
+// uv data
+// http://api.openweathermap.org/data/2.5/uvi?lat={lat}&lon={lon}&appid={API key}
+
+// 5-day forcast
+// http://api.openweathermap.org/data/2.5/forecast?q=München,US&appid={API key}
 
 // these two variables target the form element (searchFormEl) and the input element (searchInputEl) in the HTML
 var searchFormEl = document.querySelector("#search-city");
@@ -44,6 +48,7 @@ var submitCity = function (event) {
     else {
         alert("Please enter the city you would like to see!");
     }
+    futureForecast(locationChosen);
 }
 
 // these parameters represent accordingly: weather/data and location/city in the getCityWeather function
@@ -86,7 +91,8 @@ var getUvIndex = function (x, y) {
     });
 }
 
-var formatDate = function(index) {
+// gives the current date 
+var formatDate = function (index) {
     var queryDate = index.date_iso;
     var currentDate = queryDate.split("T")[0];
     console.log(currentDate);
@@ -94,7 +100,7 @@ var formatDate = function(index) {
 }
 
 // changes color according to uv index
-var changeUvColor = function(index) {
+var changeUvColor = function (index) {
 
     var uvStatus = index.value;
     console.log(uvStatus);
@@ -113,6 +119,16 @@ var changeUvColor = function(index) {
     if (uvStatus > 11) {
         cityUVIndex.classList = "uv-very-unhealthy";
     }
+}
+
+var futureForecast = function (city) {
+    var forecastApi = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + ",US&appid=1b885e610b5ff8d663b1c0a52218b536";
+
+    fetch(forecastApi).then(function (response) {
+        response.json().then(function (data) { // formats response as JSON
+            console.log(data);
+        });
+    });
 }
 
 searchFormEl.addEventListener("submit", submitCity);
