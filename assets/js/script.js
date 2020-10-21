@@ -162,17 +162,38 @@ var displayFutureForecast = function(location, forecast) {
     console.log(forecast.list[1].main.humidity);
     // temperature for five-day
     fcTempOne.textContent = "Temp: " + forecast.list[1].main.temp + "°F";
-    fcTempTwo.textContent = "Temp: " + forecast.list[2].main.temp + "°F";
-    fcTempThree.textContent = "Temp: " + forecast.list[3].main.temp + "°F";
-    fcTempFour.textContent = "Temp: " + forecast.list[4].main.temp + "°F";
-    fcTempFive.textContent = "Temp: " + forecast.list[5].main.temp + "°F";
+    fcTempTwo.textContent = "Temp: " + forecast.list[9].main.temp + "°F";
+    fcTempThree.textContent = "Temp: " + forecast.list[17].main.temp + "°F";
+    fcTempFour.textContent = "Temp: " + forecast.list[25].main.temp + "°F";
+    fcTempFive.textContent = "Temp: " + forecast.list[33].main.temp + "°F";
 
     // humidity for five-day 
     fcHumidOne.textContent = "Humidity: " + forecast.list[1].main.humidity + "%";
-    fcHumidTwo.textContent = "Humidity: " + forecast.list[2].main.humidity + "%";
-    fcHumidThree.textContent = "Humidity: " + forecast.list[3].main.humidity + "%";
-    fcHumidFour.textContent = "Humidity: " + forecast.list[4].main.humidity + "%";
-    fcHumidFive.textContent = "Humidity: " + forecast.list[5].main.humidity + "%";
+    fcHumidTwo.textContent = "Humidity: " + forecast.list[9].main.humidity + "%";
+    fcHumidThree.textContent = "Humidity: " + forecast.list[17].main.humidity + "%";
+    fcHumidFour.textContent = "Humidity: " + forecast.list[25].main.humidity + "%";
+    fcHumidFive.textContent = "Humidity: " + forecast.list[33].main.humidity + "%";
+
+    // dates 
+    var dayOne = forecast.list[1].dt_txt;
+    var dayOneText = dayOne.split("00:")[0].trim();
+    weatherDayOne.textContent = dayOneText;
+
+    var dayTwo = forecast.list[9].dt_txt;
+    var dayTwoText = dayTwo.split("00:")[0].trim();
+    weatherDayTwo.textContent = dayTwoText;
+
+    var dayThree = forecast.list[17].dt_txt;
+    var dayThreeText = dayThree.split("00:")[0].trim();
+    weatherDayThree.textContent = dayThreeText;
+
+    var dayFour = forecast.list[25].dt_txt;
+    var dayFourText = dayFour.split("00:")[0].trim();
+    weatherDayFour.textContent = dayFourText;
+
+    var dayFive = forecast.list[33].dt_txt;
+    var dayFiveText = dayFive.split("00:")[0].trim();
+    weatherDayFive.textContent = dayFiveText;
 }
 
 searchFormEl.addEventListener("submit", submitCity);
