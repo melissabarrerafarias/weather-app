@@ -49,6 +49,7 @@ var iconFiveContainer = document.createElement("img");
 
 // search history elements
 var searchHistoryContainer = document.querySelector("#search-history");
+var searchHistoryCity = document.querySelector(".list-group");
 
 // fetch call for weather 
 var getCityWeather = function (city) {
@@ -78,25 +79,29 @@ var submitCity = function (event) {
         alert("Please enter the city you would like to see!");
     }
 
-     // search history 
-     // creates element for search history item
-     var oldCity = document.createElement("a");
-     oldCity.setAttribute("href", "#");
-     oldCity.classList = "list-group-item list-group-item-action";
-     oldCity.textContent = locationChosen;
+    // search history 
+    // creates element for search history item
+    var oldCity = document.createElement("a");
+    oldCity.setAttribute("href", "#");
+    oldCity.id = "add" + locationChosen;
+    oldCity.classList = "list-group-item list-group-item-action";
+    oldCity.textContent = locationChosen;
 
     // appends to the div container
-     searchHistoryContainer.appendChild(oldCity);
+    searchHistoryContainer.appendChild(oldCity);
 
+    // search history saving
+    // let searches = [];
+
+    // for (var i = 0; i < searches.length; i++) {
+    //     searches[i].push(oldCity.textContent);
+    // }
+    
+    
+
+    // localStorage.setItem("Recent Search:", JSON.stringify(searches));
 
     futureForecast(locationChosen);
-}
-
-// listener for search history 
-var searchCityAgain = function(event) {
-    event.preventDefault();
-    console.log("this is working");
-    
 }
 
 // these parameters represent accordingly: weather/data and location/city in the getCityWeather function
@@ -167,7 +172,7 @@ var changeUvColor = function (index) {
 
 var futureForecast = function (city) {
     var forecastApi = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&appid=1b885e610b5ff8d663b1c0a52218b536";
-    console.log(forecastApi);
+
     fetch(forecastApi).then(function (response) {
         response.json().then(function (results) { // formats response as JSON
             displayFutureForecast(city, results);
@@ -176,9 +181,8 @@ var futureForecast = function (city) {
 }
 
 // parameters are: location = city and forecast = results
-var displayFutureForecast = function(location, forecast) {
-    console.log(location, forecast);
-    console.log(forecast.list[1].main.humidity);
+var displayFutureForecast = function (location, forecast) {
+
     // temperature for five-day
     fcTempOne.textContent = "Temp: " + forecast.list[5].main.temp + "°F";
     fcTempTwo.textContent = "Temp: " + forecast.list[13].main.temp + "°F";
@@ -187,7 +191,7 @@ var displayFutureForecast = function(location, forecast) {
     fcTempFive.textContent = "Temp: " + forecast.list[37].main.temp + "°F";
 
     // humidity for five-day 
-    fcHumidOne.textContent = "Humidity: " + forecast.list[4].main.humidity + "%";
+    fcHumidOne.textContent = "Humidity: " + forecast.list[5].main.humidity + "%";
     fcHumidTwo.textContent = "Humidity: " + forecast.list[13].main.humidity + "%";
     fcHumidThree.textContent = "Humidity: " + forecast.list[21].main.humidity + "%";
     fcHumidFour.textContent = "Humidity: " + forecast.list[29].main.humidity + "%";
@@ -195,7 +199,6 @@ var displayFutureForecast = function(location, forecast) {
 
     // dates 
     var dayOne = forecast.list[5].dt_txt;
-    console.log(dayOne);
     var dayOneText = dayOne.split("15:")[0].trim();
     weatherDayOne.textContent = dayOneText;
 
@@ -249,6 +252,4 @@ var displayFutureForecast = function(location, forecast) {
 }
 
 searchFormEl.addEventListener("submit", submitCity);
-
-searchHistoryContainer.addEventListener("click", searchCityAgain);
 
