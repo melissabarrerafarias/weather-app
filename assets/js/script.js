@@ -54,7 +54,7 @@ var searchHistoryCity = document.querySelector(".list-group");
 // fetch call for weather 
 var getCityWeather = function (city) {
     // api url for weather
-    var apiUrl = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=1b885e610b5ff8d663b1c0a52218b536";
+    var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=1b885e610b5ff8d663b1c0a52218b536";
 
     // makes the request 
     fetch(apiUrl).then(function (response) {
@@ -103,7 +103,7 @@ var submitCity = function (event) {
 var displayWeather = function (weather, location) {
     // get icon code from response
     var iconCode = weather.weather[0].icon;
-    iconImage = "http://openweathermap.org/img/wn/" + iconCode + ".png";
+    iconImage = "https://openweathermap.org/img/wn/" + iconCode + ".png";
 
     // display which city 
     currentCity.textContent = location;
@@ -126,7 +126,7 @@ var displayWeather = function (weather, location) {
 
 // takes in two parameters: x = latitude and y = longitude
 var getUvIndex = function (x, y) {
-    var uvApiUrl = "http://api.openweathermap.org/data/2.5/uvi?lat=" + x + "&lon=" + y + "&appid=1b885e610b5ff8d663b1c0a52218b536";
+    var uvApiUrl = "https://api.openweathermap.org/data/2.5/uvi?lat=" + x + "&lon=" + y + "&appid=1b885e610b5ff8d663b1c0a52218b536";
 
     fetch(uvApiUrl).then(function (response) {
         response.json().then(function (index) {
@@ -217,31 +217,31 @@ var displayFutureForecast = function (location, forecast) {
     // add icon code
     // day one forecast
     fcIconOne = forecast.list[5].weather[0].icon;
-    fcIconImage = "http://openweathermap.org/img/wn/" + fcIconOne + ".png";
+    fcIconImage = "https://openweathermap.org/img/wn/" + fcIconOne + ".png";
     iconOneContainer.setAttribute("src", fcIconImage);
     weatherDayOne.appendChild(iconOneContainer);
 
     // day two forecast 
     fcIconTwo = forecast.list[13].weather[0].icon;
-    fcIconImage = "http://openweathermap.org/img/wn/" + fcIconTwo + ".png";
+    fcIconImage = "https://openweathermap.org/img/wn/" + fcIconTwo + ".png";
     iconTwoContainer.setAttribute("src", fcIconImage);
     weatherDayTwo.appendChild(iconTwoContainer);
 
     // day three forecast
     fcIconThree = forecast.list[21].weather[0].icon;
-    fcIconImage = "http://openweathermap.org/img/wn/" + fcIconThree + ".png";
+    fcIconImage = "https://openweathermap.org/img/wn/" + fcIconThree + ".png";
     iconThreeContainer.setAttribute("src", fcIconImage);
     weatherDayThree.appendChild(iconThreeContainer);
 
     // day four forecast 
     fcIconFour = forecast.list[29].weather[0].icon;
-    fcIconImage = "http://openweathermap.org/img/wn/" + fcIconFour + ".png";
+    fcIconImage = "https://openweathermap.org/img/wn/" + fcIconFour + ".png";
     iconFourContainer.setAttribute("src", fcIconImage);
     weatherDayFour.appendChild(iconFourContainer);
 
     // day five forecast 
     fcIconFive = forecast.list[37].weather[0].icon;
-    fcIconImage = "http://openweathermap.org/img/wn/" + fcIconFive + ".png";
+    fcIconImage = "https://openweathermap.org/img/wn/" + fcIconFive + ".png";
     iconFiveContainer.setAttribute("src", fcIconImage);
     weatherDayFive.appendChild(iconFiveContainer);
 }
