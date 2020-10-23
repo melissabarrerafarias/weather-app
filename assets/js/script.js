@@ -83,26 +83,21 @@ var submitCity = function (event) {
     // creates element for search history item
     var oldCity = document.createElement("a");
     oldCity.setAttribute("href", "#");
-    oldCity.id = "add" + locationChosen;
     oldCity.classList = "list-group-item list-group-item-action";
     oldCity.textContent = locationChosen;
 
     // appends to the div container
     searchHistoryContainer.appendChild(oldCity);
 
-    // search history saving
-    // let searches = [];
-
-    // for (var i = 0; i < searches.length; i++) {
-    //     searches[i].push(oldCity.textContent);
-    // }
-    
-    
-
-    // localStorage.setItem("Recent Search:", JSON.stringify(searches));
+    oldCity.addEventListener("click", function(event) { 
+        console.log(event);
+        getCityWeather(locationChosen);
+    });
 
     futureForecast(locationChosen);
 }
+
+
 
 // these parameters represent accordingly: weather/data and location/city in the getCityWeather function
 var displayWeather = function (weather, location) {
@@ -199,23 +194,23 @@ var displayFutureForecast = function (location, forecast) {
 
     // dates 
     var dayOne = forecast.list[5].dt_txt;
-    var dayOneText = dayOne.split("15:")[0].trim();
+    var dayOneText = dayOne.split("18:")[0].trim();
     weatherDayOne.textContent = dayOneText;
 
     var dayTwo = forecast.list[13].dt_txt;
-    var dayTwoText = dayTwo.split("15:")[0].trim();
+    var dayTwoText = dayTwo.split("18:")[0].trim();
     weatherDayTwo.textContent = dayTwoText;
 
     var dayThree = forecast.list[21].dt_txt;
-    var dayThreeText = dayThree.split("15:")[0].trim();
+    var dayThreeText = dayThree.split("18:")[0].trim();
     weatherDayThree.textContent = dayThreeText;
 
     var dayFour = forecast.list[29].dt_txt;
-    var dayFourText = dayFour.split("15:")[0].trim();
+    var dayFourText = dayFour.split("18:")[0].trim();
     weatherDayFour.textContent = dayFourText;
 
     var dayFive = forecast.list[37].dt_txt;
-    var dayFiveText = dayFive.split("15:")[0].trim();
+    var dayFiveText = dayFive.split("18:")[0].trim();
     weatherDayFive.textContent = dayFiveText;
 
 
